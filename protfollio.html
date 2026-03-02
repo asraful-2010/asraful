@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Md. Asraful Islam Ridoy - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/solaiman-lipi" rel="stylesheet">
+  <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; font-family: 'Poppins', sans-serif; }
+        .bangla { font-family: 'Solaiman Lipi', 'Noto Sans Bengali', sans-serif; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a1628; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #3b82f6, #14b8a6); border-radius: 4px; }
+        
+        /* Gradient Background */
+        .main-gradient {
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 25%, #1e4d6b 50%, #0f766e 100%);
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        /* Glow Effects */
+        .glow-yellow { box-shadow: 0 0 30px rgba(250, 204, 21, 0.3); }
+        .glow-blue { box-shadow: 0 0 30px rgba(59, 130, 246, 0.4); }
+        .glow-teal { box-shadow: 0 0 30px rgba(20, 184, 166, 0.4); }
+        
+        .text-glow {
+            text-shadow: 0 0 40px rgba(250, 204, 21, 0.5);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slide-left {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slide-right {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .animate-gradient { 
+            background-size: 200% 200%;
+            animation: gradient-shift 4s ease infinite;
+        }
+        
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scroll-animate-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .scroll-animate-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scroll-animate-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .scroll-animate-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        /* Skill Card Hover */
+        .skill-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(250, 204, 21, 0.2), 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Project Card */
+        .project-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(20, 184, 166, 0.3), 0 0 40px rgba(250, 204, 21, 0.2);
+        }
+        
+        /* Button Gradient */
+        .btn-gradient {
+            background: linear-gradient(135deg, #3b82f6, #14b8a6, #facc15);
+            background-size: 200% 200%;
+            transition: all 0.4s ease;
+        }
+        
+        .btn-gradient:hover {
+            animation: gradient-shift 2s ease infinite;
+            box-shadow: 0 10px 30px rgba(250, 204, 21, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        /* Nav Link */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #facc15, #14b8a6);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Profile Image */
+        .profile-ring {
+            background: linear-gradient(135deg, #facc15, #3b82f6, #14b8a6, #facc15);
+            background-size: 300% 300%;
+            animation: gradient-shift 4s ease infinite;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        
+        /* Section Divider */
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #facc15, #14b8a6, transparent);
+            opacity: 0.5;
+        }
+        
+        /* Achievement Badge */
+        .achievement-badge {
+            transition: all 0.4s ease;
+        }
+        
+        .achievement-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(250, 204, 21, 0.3);
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        /* Hobby Icon */
+        .hobby-icon {
+            transition: all 0.4s ease;
+        }
+        
+        .hobby-icon:hover {
+            transform: rotate(10deg) scale(1.2);
+            filter: drop-shadow(0 0 15px rgba(250, 204, 21, 0.6));
+        }
+        
+        /* Form Input */
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
+        }
+        
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+    </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <meta name="description" content="Md. Asraful Islam Ridoy - Tech Enthusiast, IoT Explorer, Student Portfolio">
+<meta name="keywords" content="Asraful Islam Ridoy, IoT, Arduino, Bangladesh Student, Tech Portfolio">
+<meta name="author" content="Md. Asraful Islam Ridoy">
+<link rel="icon" type="image/png" href="ppu2k26.jpeg">
+
+
+
+ </head>
+
+
+
+ <body class="h-full overflow-auto main-gradient text-white"><!-- Floating Background Particles -->
+  <div id="particles" class="fixed inset-0 pointer-events-none overflow-hidden z-0"></div><!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass py-4 px-6">
+   <div class="max-w-7xl mx-auto flex justify-between items-center"><a href="#hero" class="text-2xl font-bold"> <span class="text-yellow-400">Asraful</span> Islam</a>
+    <div class="hidden md:flex items-center gap-8"><a href="#about" class="nav-link text-gray-200 hover:text-yellow-400">About</a> <a href="#skills" class="nav-link text-gray-200 hover:text-yellow-400">Skills</a> <a href="#projects" class="nav-link text-gray-200 hover:text-yellow-400">Projects</a> <a href="#achievements" class="nav-link text-gray-200 hover:text-yellow-400">Achievements</a> <a href="#contact" class="nav-link text-gray-200 hover:text-yellow-400">Contact</a>
+    </div><button id="mobile-menu-btn" class="md:hidden text-2xl">☰</button>
+   </div><!-- Mobile Menu -->
+   <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
+    <div class="flex flex-col gap-4"><a href="#about" class="text-gray-200 hover:text-yellow-400">About</a> <a href="#skills" class="text-gray-200 hover:text-yellow-400">Skills</a> <a href="#projects" class="text-gray-200 hover:text-yellow-400">Projects</a> <a href="#achievements" class="text-gray-200 hover:text-yellow-400">Achievements</a> <a href="#contact" class="text-gray-200 hover:text-yellow-400">Contact</a>
+    </div>
+   </div>
+  </nav><!-- Hero Section -->
+  <section id="hero" class="min-h-screen flex items-center justify-center px-6 pt-20 relative">
+   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center"><!-- Left: Profile Image -->
+    <div class="flex justify-center md:justify-start order-1 md:order-1">
+     <div class="relative">
+      <div class="profile-ring">
+       <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden bg-gradient-to-br from-blue-900 to-teal-900 flex items-center justify-center">
+       <img src="ppu2k26.jpeg" class="w-full h-full object-cover" alt="Md. Asraful Islam Ridoy">
+    </div>
+      </div><!-- Floating Elements -->
+      <div class="absolute -top-4 -right-4 w-16 h-16 glass rounded-xl flex items-center justify-center animate-float glow-yellow"><span class="text-2xl">🔧</span>
+      </div>
+      <div class="absolute -bottom-4 -left-4 w-14 h-14 glass rounded-xl flex items-center justify-center animate-float" style="animation-delay: 1s;"><span class="text-xl">💡</span>
+      </div>
+      <div class="absolute top-1/2 -right-8 w-12 h-12 glass rounded-full flex items-center justify-center animate-float" style="animation-delay: 2s;"><span class="text-lg">🚴</span>
+      </div>
+     </div>
+    </div><!-- Right: Text Content -->
+    <div class="text-center md:text-right order-2 md:order-2">
+     <p class="text-teal-400 text-lg mb-2 font-medium">Hello, I'm</p>
+     <h1 id="hero-name" class="text-4xl md:text-6xl font-bold mb-4">Md. Asraful Islam <span class="text-yellow-400">Ridoy</span></h1>
+     <p id="hero-tagline" class="text-lg md:text-xl text-gray-300 mb-3">Tech Enthusiast |Student |Cyclist | Bike Enthusiast |Aspiring Rider </p>
+     <p id="hero-tagline-bn" class="bangla text-lg text-teal-300 mb-8"> IT Support & IoT Basics</p>
+     <div class="flex gap-4 justify-center md:justify-end"><a href="#projects" class="btn-gradient px-8 py-3 rounded-full font-semibold text-gray-900 inline-block"> View Projects </a> <a href="#contact" class="glass px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all inline-block border border-yellow-400/30"> Contact Me </a>
+     </div><!-- Social Icons -->
+     <div class="flex gap-4 mt-8 justify-center md:justify-end"><a href="https://wa.me/qr/WC5KUXYFKCEEJ1"target="_blank" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-yellow-400/20 transition-all group" aria-label="Whatsapp">
+       <img src="download (6).png" class="w-6 h-6"></a> <a href="https://www.facebook.com/asrafulridoy.facebook" target="_blank" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-blue-400/20 transition-all group" aria-label="Facebook">
+       <svg class="w-5 h-5 text-gray-300 group-hover:text-blue-400" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+       </svg></a> <a href="https://github.com/asraful-2010"target="_blank" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-gray-400/20 transition-all group" aria-label="GitHub">
+       <svg class="w-5 h-5 text-gray-300 group-hover:text-white" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+       </svg></a>
+     </div>
+    </div>
+   </div><!-- Scroll Indicator -->
+   <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+   </div>
+  </section>
+  <div class="section-divider max-w-4xl mx-auto"></div><!-- About Me Section -->
+  <section id="about" class="py-24 px-6">
+   <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 scroll-animate">
+     <h2 id="about-title" class="text-4xl md:text-5xl font-bold mb-4">About <span class="text-yellow-400">Me</span></h2>
+     <p class="bangla text-xl text-teal-300">আমার সম্পর্কে</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-12 items-center"><!-- Left: Text Content -->
+     <div class="scroll-animate-left">
+      <div class="glass-card rounded-3xl p-8">
+       <h3 class="text-2xl font-semibold text-yellow-400 mb-4">Who Am I?</h3>
+       <p class="text-gray-300 leading-relaxed mb-6">I'm a passionate technology enthusiast and student with a deep interest in IoT (Internet of Things) and embedded systems. My journey in tech began with curiosity about how things work, leading me to explore Arduino, sensors, and smart automation systems.</p>
+       <p class="bangla text-gray-300 leading-relaxed mb-6">আমি একজন প্রযুক্তি উৎসাহী এবং ছাত্র। IoT (ইন্টারনেট অফ থিংস) এবং এমবেডেড সিস্টেমে আমার গভীর আগ্রহ রয়েছে। প্রযুক্তিতে আমার যাত্রা শুরু হয়েছিল জিনিসগুলো কীভাবে কাজ করে সে সম্পর্কে কৌতূহল থেকে।</p>
+       <h3 class="text-2xl font-semibold text-teal-400 mb-4">Education</h3>
+       <div class="flex items-center gap-4 mb-4">
+        <div class="w-12 h-12 glass rounded-xl flex items-center justify-center"><span class="text-2xl">🎓</span>
+        </div>
+        <div>
+         <p class="font-semibold">SSC 2k26</p>
+         <p class="text-gray-400 text-sm">SSC-26 Vocational | Continuing</p>
+        </div>
+       </div>
+       <p class="bangla text-gray-400 text-sm mb-6">বাংলাদেশ কারিগরি শিক্ষা বোর্ড এর অধিনস্ত ডিমলা সরকারি টেকনিক্যাল স্কুল এন্ড কলেজে পড়াশোনা চলমান</p>
+       <h3 class="text-2xl font-semibold text-blue-400 mb-4">IoT Journey</h3>
+       <p class="text-gray-300 leading-relaxed">From building simple LED circuits to creating smart home automation systems, I've been constantly learning and experimenting with new technologies. My goal is to contribute to innovative solutions that make life easier.</p>
+      </div>
+     </div><!-- Right: Illustration -->
+     <div class="scroll-animate-right flex justify-center">
+      <div class="relative">
+       <div class="w-80 h-80 glass-card rounded-3xl flex items-center justify-center overflow-hidden">
+        <div class="text-center p-6">
+         <div class="text-8xl mb-4">
+          🤖
+         </div>
+         <p class="text-xl font-semibold text-yellow-400">IoT Explorer</p>
+         <p class="bangla text-teal-300">আইওটি অন্বেষক</p>
+        </div>
+       </div><!-- Stats -->
+       <div class="absolute -bottom-6 -left-6 glass rounded-2xl p-4 glow-blue">
+        <p class="text-3xl font-bold text-yellow-400">5+</p>
+        <p class="text-sm text-gray-300">Projects</p>
+       </div>
+       <div class="absolute -top-6 -right-6 glass rounded-2xl p-4 glow-teal">
+        <p class="text-3xl font-bold text-teal-400">3+</p>
+        <p class="text-sm text-gray-300">Years Learning</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider max-w-4xl mx-auto"></div><!-- Skills Section -->
+  <section id="skills" class="py-24 px-6">
+   <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 scroll-animate">
+     <h2 class="text-4xl md:text-5xl font-bold mb-4">Tech <span class="text-yellow-400">Stack</span></h2>
+     <p class="bangla text-xl text-teal-300">আমার দক্ষতা</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"><!-- Arduino -->
+     <div class="skill-card glass-card rounded-2xl p-6 text-center scroll-animate" style="transition-delay: 0.1s;">
+      <div class="w-16 h-16 mx-auto mb-4 glass rounded-xl flex items-center justify-center">
+       <svg class="w-10 h-10 text-teal-400" viewbox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V8h2v4zm4 4h-2v-2h2v2zm0-4h-2V8h2v4z" />
+       </svg>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">Arduino</h3>
+      <p class="bangla text-sm text-gray-400">আরডুইনো</p>
+     </div><!-- IoT -->
+     <div class="skill-card glass-card rounded-2xl p-6 text-center scroll-animate" style="transition-delay: 0.2s;">
+      <div class="w-16 h-16 mx-auto mb-4 glass rounded-xl flex items-center justify-center"><span class="text-3xl">🌐</span>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">IoT</h3>
+      <p class="bangla text-sm text-gray-400">আইওটি</p>
+     </div><!-- C Programming -->
+     <div class="skill-card glass-card rounded-2xl p-6 text-center scroll-animate" style="transition-delay: 0.3s;">
+      <div class="w-16 h-16 mx-auto mb-4 glass rounded-xl flex items-center justify-center"><span class="text-2xl font-bold text-blue-400">C</span>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">C Programming</h3>
+      <p class="bangla text-sm text-gray-400">সি প্রোগ্রামিং</p>
+     </div><!-- Python -->
+     <div class="skill-card glass-card rounded-2xl p-6 text-center scroll-animate" style="transition-delay: 0.4s;">
+      <div class="w-16 h-16 mx-auto mb-4 glass rounded-xl flex items-center justify-center"><span class="text-3xl">🐍</span>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">Python</h3>
+      <p class="bangla text-sm text-gray-400">পাইথন</p>
+     </div><!-- Java -->
+     <div class="skill-card glass-card rounded-2xl p-6 text-center scroll-animate" style="transition-delay: 0.5s;">
+      <div class="w-16 h-16 mx-auto mb-4 glass rounded-xl flex items-center justify-center"><span class="text-3xl">👨🏻‍💻</span>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">JavaScript</h3>
+      <p class="bangla text-sm text-gray-400">জাভা স্ক্রিপ্ট</p>
+     </div><!-- HTML/CSS -->
+     <div class="skill-card glass-card rounded-2xl p-6 text-center scroll-animate" style="transition-delay: 0.6s;">
+      <div class="w-16 h-16 mx-auto mb-4 glass rounded-xl flex items-center justify-center"><span class="text-3xl">🌐</span>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">HTML/CSS</h3>
+      <p class="bangla text-sm text-gray-400">এইচটিএমএল</p>
+     </div><!-- MS Office -->
+     <div class="skill-card glass-card rounded-2xl p-6 text-center scroll-animate" style="transition-delay: 0.7s;">
+      <div class="w-16 h-16 mx-auto mb-4 glass rounded-xl flex items-center justify-center"><span class="text-3xl">📊</span>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">MS Office</h3>
+      <p class="bangla text-sm text-gray-400">এমএস অফিস</p>
+     </div><!-- Electronics -->
+     <div class="skill-card glass-card rounded-2xl p-6 text-center scroll-animate" style="transition-delay: 0.8s;">
+      <div class="w-16 h-16 mx-auto mb-4 glass rounded-xl flex items-center justify-center"><span class="text-3xl">⚡</span>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">Electronics</h3>
+      <p class="bangla text-sm text-gray-400">ইলেকট্রনিক্স</p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider max-w-4xl mx-auto"></div><!-- Projects Section -->
+  <section id="projects" class="py-24 px-6">
+   <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 scroll-animate">
+     <h2 class="text-4xl md:text-5xl font-bold mb-4">My <span class="text-yellow-400">Projects</span></h2>
+     <p class="bangla text-xl text-teal-300">আমার প্রকল্পসমূহ</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+<!-- Featured Project -->
+     <div class="project-card glass-card rounded-3xl overflow-hidden lg:col-span-2 scroll-animate">
+      <div class="p-8">
+       <div class="flex items-center gap-3 mb-4"><span class="px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-full text-sm font-medium">Featured</span> <span class="px-3 py-1 bg-teal-400/20 text-teal-400 rounded-full text-sm font-medium">IoT</span>
+       </div>
+       <h3 class="text-2xl font-bold mb-3">Smart IoT Based Home Automation System</h3>
+       <p class="bangla text-teal-300 mb-4">স্মার্ট আইওটি ভিত্তিক হোম অটোমেশন সিস্টেম</p>
+       <p class="text-gray-300 mb-6">A comprehensive home automation system using Arduino and IoT technology. Control lights, fans, and appliances remotely via smartphone app. Features include AI Agent control integration, scheduling, and energy monitoring.</p>
+       <div class="flex flex-wrap gap-2 mb-6"><span class="px-3 py-1 glass rounded-lg text-sm">Arduino</span> <span class="px-3 py-1 glass rounded-lg text-sm">ESP8266</span> <span class="px-3 py-1 glass rounded-lg text-sm">Relay Module</span> <span class="px-3 py-1 glass rounded-lg text-sm">SIBH(Smart IoT Based Home) App</span>
+       </div><button onclick="openModal('home-automation')" class="btn-gradient px-6 py-2 rounded-full text-gray-900 font-semibold text-sm"> View Details </button>
+      </div>
+     </div>
+     <!-- Mini Project 1 -->
+     <div class="project-card glass-card rounded-3xl overflow-hidden scroll-animate" style="transition-delay: 0.2s;">
+      <div class="p-6">
+       <div class="w-14 h-14 glass rounded-xl flex items-center justify-center mb-4"><span class="text-3xl">🌡️</span>
+       </div>
+       <h3 class="text-xl font-bold mb-2">Temperature Monitor</h3>
+       <p class="bangla text-teal-300 text-sm mb-3">তাপমাত্রা মনিটর</p>
+       <p class="text-gray-400 text-sm mb-4">Real-time temperature and humidity monitoring with LCD display and data logging.</p>
+       <div class="flex flex-wrap gap-2"><span class="px-2 py-1 glass rounded text-xs">DHT11</span> <span class="px-2 py-1 glass rounded text-xs">LCD</span>
+       </div>
+      </div>
+     </div>
+     <!-- Mini Project 2 -->
+     <div class="project-card glass-card rounded-3xl overflow-hidden scroll-animate" style="transition-delay: 0.3s;">
+      <div class="p-6">
+       <div class="w-14 h-14 glass rounded-xl flex items-center justify-center mb-4"><span class="text-3xl">💡</span>
+       </div>
+       <h3 class="text-xl font-bold mb-2">Smart Light System</h3>
+       <p class="bangla text-teal-300 text-sm mb-3">স্মার্ট লাইট সিস্টেম</p>
+       <p class="text-gray-400 text-sm mb-4">Motion-activated lighting system with ambient light sensing for energy efficiency.</p>
+       <div class="flex flex-wrap gap-2"><span class="px-2 py-1 glass rounded text-xs">PIR Sensor</span> <span class="px-2 py-1 glass rounded text-xs">LDR</span>
+       </div>
+      </div>
+     </div>
+     <!-- Mini Project 3 -->
+     <div class="project-card glass-card rounded-3xl overflow-hidden scroll-animate" style="transition-delay: 0.4s;">
+      <div class="p-6">
+       <div class="w-14 h-14 glass rounded-xl flex items-center justify-center mb-4"><span class="text-3xl">🚨</span>
+       </div>
+       <h3 class="text-xl font-bold mb-2">Security Alarm</h3>
+       <p class="bangla text-teal-300 text-sm mb-3">সিকিউরিটি অ্যালার্ম</p>
+       <p class="text-gray-400 text-sm mb-4">Intrusion detection system with SMS alerts and buzzer notification.</p>
+       <div class="flex flex-wrap gap-2"><span class="px-2 py-1 glass rounded text-xs">Ultrasonic</span> <span class="px-2 py-1 glass rounded text-xs">GSM</span>
+       </div>
+      </div>
+     </div>
+     <!-- Mini Project 4 -->
+     <div class="project-card glass-card rounded-3xl overflow-hidden scroll-animate" style="transition-delay: 0.5s;">
+      <div class="p-6">
+       <div class="w-14 h-14 glass rounded-xl flex items-center justify-center mb-4"><span class="text-3xl">🌱</span>
+       </div>
+       <h3 class="text-xl font-bold mb-2">Plant Watering System</h3>
+       <p class="bangla text-teal-300 text-sm mb-3">গাছে পানি দেওয়ার সিস্টেম</p>
+       <p class="text-gray-400 text-sm mb-4">Automatic plant watering based on soil moisture levels with pump control.</p>
+       <div class="flex flex-wrap gap-2"><span class="px-2 py-1 glass rounded text-xs">Soil Sensor</span> <span class="px-2 py-1 glass rounded text-xs">Pump</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider max-w-4xl mx-auto"></div><!-- Achievements Section -->
+  <section id="achievements" class="py-24 px-6">
+   <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 scroll-animate">
+     <h2 class="text-4xl md:text-5xl font-bold mb-4"><span class="text-yellow-400">Achievements</span> &amp; Awards</h2>
+     <p class="bangla text-xl text-teal-300">অর্জন ও পুরস্কার</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Achievement 1 -->
+     <div class="achievement-badge glass-card rounded-3xl p-8 text-center scroll-animate-left">
+      <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center"><span class="text-4xl">🏆</span>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Best Presenter 2024</h3>
+      <p class="bangla text-teal-300 mb-3">সেরা উপস্থাপক ২০২৪</p>
+      <p class="text-gray-400 text-sm">Awarded for exceptional presentation skills at the regional science exhibition.</p>
+     </div><!-- Achievement 2 -->
+     <div class="achievement-badge glass-card rounded-3xl p-8 text-center scroll-animate" style="transition-delay: 0.2s;">
+      <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center"><span class="text-4xl">🔬</span>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Skills and Innovation Competition-2025 Participant</h3>
+      <p class="bangla text-teal-300 mb-3">Asset Project এর Institute পর্যায়ের প্রতিযোগিতায় অংশগ্রহণ</p>
+      <p class="text-gray-400 text-sm">Presented IoT Home Automation project at multiple science fairs and exhibitions.</p>
+     </div><!-- Achievement 3 -->
+     <div class="achievement-badge glass-card rounded-3xl p-8 text-center scroll-animate-right">
+      <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center"><span class="text-4xl">💻</span>
+      </div>
+      <h3 class="text-xl font-bold mb-2">Tech Workshop Leader</h3>
+      <p class="bangla text-teal-300 mb-3">টেক ওয়ার্কশপ লিডার</p>
+      <p class="text-gray-400 text-sm">Conducted Arduino and IoT workshops for fellow students, teaching basic electronics.</p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider max-w-4xl mx-auto"></div><!-- Hobbies Section -->
+  <section id="hobbies" class="py-24 px-6">
+   <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 scroll-animate">
+     <h2 class="text-4xl md:text-5xl font-bold mb-4">Hobbies &amp; <span class="text-yellow-400">Interests</span></h2>
+     <p class="bangla text-xl text-teal-300">শখ ও আগ্রহ</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-8"><!-- Hobby 1 -->
+     <div class="hobby-icon glass-card rounded-2xl p-6 text-center w-36 scroll-animate" style="transition-delay: 0.1s;"><span class="text-5xl block mb-3">🤖</span>
+      <p class="font-medium">Robotics</p>
+      <p class="bangla text-sm text-gray-400">রোবটিক্স</p>
+     </div><!-- Hobby 2 -->
+     <div class="hobby-icon glass-card rounded-2xl p-6 text-center w-36 scroll-animate" style="transition-delay: 0.2s;"><span class="text-5xl block mb-3">🎬</span>
+      <p class="font-medium">Video Editing</p>
+      <p class="bangla text-sm text-gray-400">ভিডিও এডিটিং</p>
+     </div><!-- Hobby 3 -->
+     <div class="hobby-icon glass-card rounded-2xl p-6 text-center w-36 scroll-animate" style="transition-delay: 0.3s;"><span class="text-5xl block mb-3">🔬</span>
+      <p class="font-medium">Science Fairs</p>
+      <p class="bangla text-sm text-gray-400">বিজ্ঞান মেলা</p>
+     </div><!-- Hobby 4 -->
+     <div class="hobby-icon glass-card rounded-2xl p-6 text-center w-36 scroll-animate" style="transition-delay: 0.4s;"><span class="text-5xl block mb-3">🚴</span>
+      <p class="font-medium">Cycling</p>
+      <p class="bangla text-sm text-gray-400">সাইক্লিং</p>
+     </div><!-- Hobby 5 -->
+     <div class="hobby-icon glass-card rounded-2xl p-6 text-center w-36 scroll-animate" style="transition-delay: 0.5s;"><span class="text-5xl block mb-3">🏍️</span>
+      <p class="font-medium">Bike Riding</p>
+      <p class="bangla text-sm text-gray-400">বাইক রাইডিং </p>
+     </div><!-- Hobby 6 -->
+     <div class="hobby-icon glass-card rounded-2xl p-6 text-center w-36 scroll-animate" style="transition-delay: 0.6s;"><span class="text-5xl block mb-3">📚</span>
+      <p class="font-medium">Learning</p>
+      <p class="bangla text-sm text-gray-400">শেখা</p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="section-divider max-w-4xl mx-auto"></div><!-- Contact Section -->
+  <section id="contact" class="py-24 px-6">
+   <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16 scroll-animate">
+     <h2 id="contact-title" class="text-4xl md:text-5xl font-bold mb-4">Get In <span class="text-yellow-400">Touch</span></h2>
+     <p class="bangla text-xl text-teal-300">যোগাযোগ করুন</p>
+    </div>
+    <div class="glass-card rounded-3xl p-8 md:p-12 scroll-animate"><!-- Add more form fields here if needed -->
+     <form  action="https://formspree.io/f/mpqjgpep" method="POST" id="contact-form" class="space-y-6">
+      <div class="grid md:grid-cols-2 gap-6">
+       <div><label for="name" class="block text-sm font-medium mb-2">Name / নাম</label> <input type="text" id="name" name="name" required class="form-input w-full px-4 py-3 glass rounded-xl bg-white/5 border border-white/10 focus:outline-none text-white placeholder-gray-400" placeholder="Your name">
+       </div>
+       <div><label for="email" class="block text-sm font-medium mb-2">Email / ইমেইল</label> <input type="email" id="email" name="email" required class="form-input w-full px-4 py-3 glass rounded-xl bg-white/5 border border-white/10 focus:outline-none text-white placeholder-gray-400" placeholder="your@email.com">
+       </div>
+      </div>
+      <div><label for="subject" class="block text-sm font-medium mb-2">Subject / বিষয়</label> <input type="text" id="subject" name="subject" class="form-input w-full px-4 py-3 glass rounded-xl bg-white/5 border border-white/10 focus:outline-none text-white placeholder-gray-400" placeholder="Message subject">
+      </div>
+      <div><label for="message" class="block text-sm font-medium mb-2">Message / বার্তা</label> <textarea id="message" name="message" rows="5" required class="form-input w-full px-4 py-3 glass rounded-xl bg-white/5 border border-white/10 focus:outline-none text-white placeholder-gray-400 resize-none" placeholder="Write your message here..."></textarea>
+      </div>
+      <div class="text-center"><button type="submit" class="btn-gradient px-12 py-4 rounded-full font-bold text-gray-900 text-lg"> Send Message </button>
+      </div>
+      
+     </form><!-- Form Status Messages -->
+     <div id="form-success" class="hidden mt-6 p-4 bg-teal-500/20 border border-teal-500/50 rounded-xl text-center"><span class="text-2xl">✅</span>
+      <p class="text-teal-300 font-medium mt-2">Message sent successfully!</p>
+      <p class="bangla text-teal-400 text-sm">আপনার বার্তা সফলভাবে পাঠানো হয়েছে!</p>
+     </div>
+     <div id="form-error" class="hidden mt-6 p-4 bg-red-500/20 border border-red-500/50 rounded-xl text-center"><span class="text-2xl">❌</span>
+      <p class="text-red-300 font-medium mt-2">Something went wrong. Please try again.</p>
+      <p class="bangla text-red-400 text-sm">কিছু ভুল হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="py-12 px-6 glass mt-12">
+   <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+     <div class="text-center md:text-left">
+      <h3 class="text-2xl font-bold mb-2"><span class="text-yellow-400">R</span>idoy</h3>
+      <p class="text-gray-400 text-sm">Tech Enthusiast &amp; IoT Explorer</p>
+      <p class="bangla text-gray-500 text-sm">প্রযুক্তি উৎসাহী ও আইওটি অন্বেষক</p>
+     </div>
+     <div class="flex gap-6"><a href="#" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-yellow-400/20 transition-all group" aria-label="LinkedIn">
+       <svg class="w-5 h-5 text-gray-300 group-hover:text-yellow-400" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+       </svg></a> <a href="#" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-blue-400/20 transition-all group" aria-label="Facebook">
+       <svg class="w-5 h-5 text-gray-300 group-hover:text-blue-400" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+       </svg></a> <a href="#" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-gray-400/20 transition-all group" aria-label="GitHub">
+       <svg class="w-5 h-5 text-gray-300 group-hover:text-white" fill="currentColor" viewbox="0 0 24 24">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+       </svg></a>
+     </div>
+    </div>
+    <div class="section-divider my-8"></div>
+    <div class="text-center">
+     <p class="text-gray-400 text-sm">© 2026 Md. Asraful Islam Ridoy. All rights reserved.</p>
+     <p class="bangla text-gray-500 text-xs mt-1">সর্বস্বত্ব সংরক্ষিত © ২০২৬ মো: আশরাফুল ইসলাম হৃদয়</p>
+    </div>
+   </div>
+  </footer><!-- Project Modal -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden">
+   <div class="modal-overlay absolute inset-0 bg-black/70" onclick="closeModal()"></div>
+   <div class="absolute inset-4 md:inset-12 lg:inset-24 glass-card rounded-3xl overflow-auto"><button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-red-500/20 transition-all"> <span class="text-2xl">×</span> </button>
+    <div id="modal-content" class="p-8 md:p-12"><!-- Modal content loaded dynamically -->
+    </div>
+   </div>
+  </div>
+  <script>
+        // Default configuration
+        const defaultConfig = {
+            hero_name: 'Md. Asraful Islam Ridoy',
+            hero_tagline: 'Tech Enthusiast | Student | Cyclist | Bike Enthusiast | Aspiring Rider',
+            hero_tagline_bn: '"IoT ও প্রযুক্তিতে আগ্রহী ছাত্র"',
+            about_title: 'About Me',
+            contact_title: 'Get In Touch',
+            background_color: '#0a1628',
+            accent_color: '#facc15',
+            text_color: '#ffffff',
+            secondary_color: '#14b8a6',
+            font_family: 'Poppins'
+        };
+
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange: async (config) => {
+                    const heroName = document.getElementById('hero-name');
+                    const heroTagline = document.getElementById('hero-tagline');
+                    const heroTaglineBn = document.getElementById('hero-tagline-bn');
+                    const aboutTitle = document.getElementById('about-title');
+                    const contactTitle = document.getElementById('contact-title');
+
+                    if (heroName) {
+                        const name = config.hero_name || defaultConfig.hero_name;
+                        const parts = name.split(' ');
+                        const lastName = parts.pop();
+                        heroName.innerHTML = `${parts.join(' ')} <span class="text-yellow-400">${lastName}</span>`;
+                    }
+                    if (heroTagline) heroTagline.textContent = config.hero_tagline || defaultConfig.hero_tagline;
+                    if (heroTaglineBn) heroTaglineBn.textContent = config.hero_tagline_bn || defaultConfig.hero_tagline_bn;
+                    if (aboutTitle) {
+                        const title = config.about_title || defaultConfig.about_title;
+                        const words = title.split(' ');
+                        if (words.length > 1) {
+                            aboutTitle.innerHTML = `${words[0]} <span class="text-yellow-400">${words.slice(1).join(' ')}</span>`;
+                        } else {
+                            aboutTitle.innerHTML = `<span class="text-yellow-400">${title}</span>`;
+                        }
+                    }
+                    if (contactTitle) {
+                        const title = config.contact_title || defaultConfig.contact_title;
+                        const words = title.split(' ');
+                        if (words.length > 1) {
+                            contactTitle.innerHTML = `${words.slice(0, -1).join(' ')} <span class="text-yellow-400">${words[words.length - 1]}</span>`;
+                        } else {
+                            contactTitle.innerHTML = `<span class="text-yellow-400">${title}</span>`;
+                        }
+                    }
+
+                    // Apply font
+                    const font = config.font_family || defaultConfig.font_family;
+                    document.body.style.fontFamily = `${font}, sans-serif`;
+                },
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        {
+                            get: () => config.accent_color || defaultConfig.accent_color,
+                            set: (value) => window.elementSdk.setConfig({ accent_color: value })
+                        },
+                        {
+                            get: () => config.secondary_color || defaultConfig.secondary_color,
+                            set: (value) => window.elementSdk.setConfig({ secondary_color: value })
+                        }
+                    ],
+                    borderables: [],
+                    fontEditable: {
+                        get: () => config.font_family || defaultConfig.font_family,
+                        set: (value) => window.elementSdk.setConfig({ font_family: value })
+                    },
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ['hero_name', config.hero_name || defaultConfig.hero_name],
+                    ['hero_tagline', config.hero_tagline || defaultConfig.hero_tagline],
+                    ['hero_tagline_bn', config.hero_tagline_bn || defaultConfig.hero_tagline_bn],
+                    ['about_title', config.about_title || defaultConfig.about_title],
+                    ['contact_title', config.contact_title || defaultConfig.contact_title]
+                ])
+            });
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const colors = ['rgba(250, 204, 21, 0.3)', 'rgba(59, 130, 246, 0.3)', 'rgba(20, 184, 166, 0.3)'];
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle animate-pulse-glow';
+                particle.style.cssText = `
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    width: ${Math.random() * 8 + 2}px;
+                    height: ${Math.random() * 8 + 2}px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    animation-delay: ${Math.random() * 3}s;
+                    animation-duration: ${Math.random() * 3 + 2}s;
+                `;
+                container.appendChild(particle);
+            }
+            
+            // Add floating lines
+            for (let i = 0; i < 10; i++) {
+                const line = document.createElement('div');
+                line.style.cssText = `
+                    position: absolute;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    width: ${Math.random() * 100 + 50}px;
+                    height: 1px;
+                    background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.2), transparent);
+                    transform: rotate(${Math.random() * 360}deg);
+                    opacity: 0.3;
+                `;
+                container.appendChild(line);
+            }
+        }
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Project modal
+        const projectData = {
+            'home-automation': {
+                title: 'Smart IoT Based Home Automation System',
+                titleBn: 'স্মার্ট আইওটি ভিত্তিক হোম অটোমেশন সিস্টেম',
+                description: `This comprehensive home automation system leverages Arduino microcontrollers and IoT technology to create a smart living environment. The system allows users to control various home appliances remotely through a smartphone application.`,
+                features: [
+                    'Remote control via Blynk mobile app',
+                    'Voice control integration with Google Assistant',
+                    'Automated scheduling for lights and appliances',
+                    'Real-time energy consumption monitoring',
+                    'Temperature and humidity sensing',
+                    'Motion-activated lighting in specific zones'
+                ],
+                featuresBn: [
+                    'Blynk মোবাইল অ্যাপের মাধ্যমে দূরবর্তী নিয়ন্ত্রণ',
+                    'Google Assistant এর সাথে ভয়েস কন্ট্রোল',
+                    'স্বয়ংক্রিয় সময়সূচী',
+                    'রিয়েল-টাইম এনার্জি মনিটরিং',
+                    'তাপমাত্রা ও আর্দ্রতা সেন্সিং',
+                    'মোশন-অ্যাক্টিভেটেড লাইটিং'
+                ],
+                components: ['Arduino Uno', 'ESP8266 WiFi Module', '4-Channel Relay Module', 'DHT11 Sensor', 'PIR Motion Sensor', 'LDR Sensor', '16x2 LCD Display'],
+                image: '🏠'
+            }
+        };
+
+        function openModal(projectId) {
+            const modal = document.getElementById('project-modal');
+            const content = document.getElementById('modal-content');
+            const data = projectData[projectId];
+            
+            if (data) {
+                content.innerHTML = `
+                    <div class="text-center mb-8">
+                        <span class="text-8xl">${data.image}</span>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-2">${data.title}</h2>
+                    <p class="bangla text-xl text-teal-300 mb-6">${data.titleBn}</p>
+                    <p class="text-gray-300 mb-8 leading-relaxed">${data.description}</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold text-yellow-400 mb-4">Features</h3>
+                            <ul class="space-y-2">
+                                ${data.features.map(f => `<li class="flex items-start gap-2"><span class="text-teal-400">✓</span> ${f}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-yellow-400 mb-4 bangla">বৈশিষ্ট্যসমূহ</h3>
+                            <ul class="space-y-2 bangla">
+                                ${data.featuresBn.map(f => `<li class="flex items-start gap-2"><span class="text-teal-400">✓</span> ${f}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold text-yellow-400 mb-4">Components Used</h3>
+                        <div class="flex flex-wrap gap-3">
+                            ${data.components.map(c => `<span class="px-4 py-2 glass rounded-full text-sm">${c}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Form handling (simulated - no actual Firebase connection)
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            setTimeout(() => {
+                // Show success message
+                document.getElementById('form-success').classList.remove('hidden');
+                document.getElementById('form-error').classList.add('hidden');
+                
+                // Reset form
+                this.reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('form-success').classList.add('hidden');
+                }, 5000);
+            }, 1500);
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Initialize
+        createParticles();
+        handleScrollAnimations();
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d615193a2031dad',t:'MTc3MjQ2NDEyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
